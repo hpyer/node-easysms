@@ -1,7 +1,6 @@
 'use strict';
 
 import Axios, { AxiosInstance } from "axios";
-import AliyunGateway from "../Gateways/AliyunGateway";
 import OrderStrategy from "./Strategies/OrderStrategy";
 import RandomStrategy from "./Strategies/RandomStrategy";
 import { CreatedGateways, CustomGatewayCreators, EasySmsConfig, GatewayConfig, GatewayConfigMap, GatewayConstructable, GatewayCreator, MessageProperty, MessengerStrategyClosure, SupportGateways } from "../Types/global";
@@ -10,6 +9,8 @@ import GatewayInterface from "./Gateway";
 import Message from "./Message";
 import Messenger from "./Messenger";
 import PhoneNumber from "./PhoneNumber";
+import AliyunGateway from "../Gateways/AliyunGateway";
+import TencentGateway from "../Gateways/TencentGateway";
 
 export default class EasySms {
 
@@ -18,6 +19,7 @@ export default class EasySms {
   protected createdGateways: CreatedGateways = {};
   protected supportGateways: SupportGateways = {
     aliyun: AliyunGateway,
+    tencent: TencentGateway,
   };
   protected messenger: Messenger = null;
   protected httpClient: AxiosInstance;
