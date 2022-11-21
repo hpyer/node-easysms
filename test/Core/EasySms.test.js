@@ -84,6 +84,34 @@ class TestUnit extends BaseTestUnit {
 
     });
 
+    it('Should use custom strategy correctly.', async () => {
+
+      const customStrategy = function (gateways) {
+        gateways.sort();
+        return gateways;
+      };
+
+      let app = new EasySms({
+        default: {
+          strategy: customStrategy,
+          gateways: ['foo', 'bar'],
+        },
+        gateways: {
+          foo: {
+            a: '123',
+          },
+          bar: {
+            b: '456',
+          },
+        }
+      });
+
+      this.assert.deepStrictEqual(app.config.get('default.gateways'), ['foo', 'bar']);
+
+      let gateways = app.strategy().call(null, ['foo', 'bar']);
+      this.assert.deepStrictEqual(gateways, ['bar', 'foo']);
+    });
+
     it('Should extend custom gateway correctly.', async () => {
 
       class TestCustomGateway extends Gateway {
