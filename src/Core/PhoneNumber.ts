@@ -5,9 +5,12 @@ export default class PhoneNumber {
   protected number: string = '';
   protected IDDCode: string = '';
 
-  constructor(number: string, IDDCode: string = null) {
-    this.number = number;
-    this.IDDCode = IDDCode ? parseInt(IDDCode.replace(/^\+0/, '')).toString() : '';
+  constructor(number: string | number, IDDCode: string | number = null) {
+    this.number = number + '';
+    if (IDDCode) {
+      IDDCode = IDDCode + '';
+      this.IDDCode = parseInt(IDDCode.replace(/^\+0/, '')).toString();
+    }
   }
 
   /**
