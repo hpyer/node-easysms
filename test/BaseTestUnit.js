@@ -1,6 +1,7 @@
 
 const MockAdapter = require('axios-mock-adapter');
 const assert = require('assert');
+const Axios = require('axios');
 
 module.exports = class BaseTestUnit {
 
@@ -22,9 +23,12 @@ module.exports = class BaseTestUnit {
 
   /**
    * 创建模拟的 HttpClient
-   * @param client HttpClient实例
+   * @param {import('axios').AxiosInstance} client HttpClient实例
    */
-  getMockedHttpClient(client) {
+  getMockedHttpClient(client = null) {
+    if (!client) {
+      client = Axios.create();
+    }
     client.__mockedAxios = new MockAdapter(client);
 
     /**

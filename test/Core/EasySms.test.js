@@ -73,14 +73,10 @@ class TestUnit extends BaseTestUnit {
       });
 
       let configs1 = app.formatGateways(['foo', 'bar']);
-      this.assert.strictEqual(configs1.length, 2);
-      this.assert.deepStrictEqual(configs1[0], {
-        gateway: 'foo',
-        a: '123',
-      });
+      this.assert.deepStrictEqual(configs1, ['foo', 'bar']);
 
-      let config2 = app.formatGateways(['foo', 'bar2']);
-      this.assert.strictEqual(config2.length, 1);
+      let configs2 = app.formatGateways(['foo', 'bar2']);
+      this.assert.deepStrictEqual(configs2, ['foo']);
 
     });
 
@@ -169,8 +165,8 @@ class TestUnit extends BaseTestUnit {
         return new TestCustomGateway(config);
       });
 
-      let client = this.getMockedHttpClient(app.getHttpClent());
-      app.setHttpClent(client);
+      let client = this.getMockedHttpClient();
+      app.setHttpClient(client);
 
       client.mock('get', '/test-url').reply(200, 'mock-success');
 
