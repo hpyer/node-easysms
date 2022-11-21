@@ -19,7 +19,7 @@ export default class Message {
 
   protected content: string | MessagePropertyClosure<string> = '';
   protected template: string | MessagePropertyClosure<string> = '';
-  protected data: Record<string, string | number> | MessagePropertyClosure<Record<string, string | number>> = {};
+  protected data: Record<string, string | number> | Array<string | number> | MessagePropertyClosure<Record<string, string | number> | Array<string | number>> = null;
 
   constructor(attributes: MessageProperty, type: string = Message.TEXT_MESSAGE) {
     this.type = type;
@@ -31,7 +31,12 @@ export default class Message {
       this.template = attributes['template'];
     }
     if (attributes['data']) {
-      this.data = {...attributes['data']};
+      if (Array.isArray(attributes['data'])) {
+        this.data = [].concat(attributes['data']);
+      }
+      else {
+        this.data = {...attributes['data']};
+      }
     }
   }
 
@@ -118,8 +123,13 @@ export default class Message {
     return this.template;
   }
 
-  setData(data: Record<string, string | number> | MessagePropertyClosure<Record<string, string | number>>) {
-    this.data = data;
+  setData(data: Record<string, string | number> | Array<string | number> | MessagePropertyClosure<Record<string, string | number> | Array<string | number>>) {
+    if (Array.isArray(data)) {
+      this.data = [].concat(data);
+    }
+    else {
+      this.data = { ...data };
+    }
     return this;
   }
   /**
@@ -129,7 +139,7 @@ export default class Message {
    */
   async getData(gateway: GatewayInterface) {
     if (typeof this.data === 'function') {
-      return await this.data(gateway)
+      return await this.data(gateway);
     }
     return this.data;
   }
