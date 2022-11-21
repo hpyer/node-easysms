@@ -42,20 +42,19 @@ export default class Messenger {
    * 调用网关进行发送
    * @param to 电话号码对象
    * @param message 消息对象
-   * @param gateways 网关配置映射
+   * @param gateways 网关标识列表
    * @returns
    */
-  async send(to: PhoneNumber, message: Message, gateways: GatewayConfig[]) {
+  async send(to: PhoneNumber, message: Message, gateways: string[]) {
     let results: MessengerResult[] = [];
     let isSuccess = false;
 
-    for (let config of gateways) {
-      let gateway = config.gateway as string;
+    for (let gateway of gateways) {
       try {
         results.push({
           gateway,
           status: Messenger.STATUS_SUCCESS,
-          result: await this.app.gateway(gateway).send(to, message, config),
+          result: await this.app.gateway(gateway).send(to, message),
         });
         isSuccess = true;
         break;

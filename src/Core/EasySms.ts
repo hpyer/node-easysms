@@ -30,7 +30,7 @@ export default class EasySms {
    * 获取请求客户端
    * @returns
    */
-  getHttpClent(): AxiosInstance {
+  getHttpClient(): AxiosInstance {
     if (!this.httpClient) {
       this.httpClient = Axios.create();
     }
@@ -41,7 +41,7 @@ export default class EasySms {
    * @param instance
    * @returns
    */
-  setHttpClent(instance: AxiosInstance): this {
+  setHttpClient(instance: AxiosInstance): this {
     this.httpClient = instance;
     return this;
   }
@@ -97,19 +97,22 @@ export default class EasySms {
   gateway(name: string) {
     if (!this.createdGateways[name]) {
       this.createdGateways[name] = this.createGateway(name);
-      this.createdGateways[name].setHttpClent(this.getHttpClent());
+      this.createdGateways[name].setHttpClient(this.getHttpClient());
     }
     return this.createdGateways[name];
   }
 
   /**
-   * 获取策略方法
+   * 获取或设置网关策略，并返回可执行方法
    * @param strategy
    * @returns
    */
   strategy(strategy: 'order' | 'random' | MessengerStrategyClosure = null) {
     if (!strategy) {
       strategy = this.config.get('default.strategy', Messenger.STRATEGY_ORDER);
+    }
+    else {
+      this.config.set('default.strategy', strategy);
     }
     if (typeof strategy === 'function') {
       return strategy;
@@ -208,15 +211,11 @@ export default class EasySms {
   protected formatGateways(gateways: string[]) {
     let formatted: string[] = this.strategy().call(null, gateways);
 
-    let results: GatewayConfig[] = [];
-
+    let results: string[] = [];
     let globalSettings: GatewayConfigMap = this.config.get('gateways', {});
     for (let gateway of formatted) {
       if (typeof globalSettings[gateway] === 'undefined') continue;
-      let config = globalSettings[gateway] || {};
-      // 重置网关标识
-      config.gateway = gateway;
-      results.push(config);
+      results.push(gateway);
     }
 
     return results;

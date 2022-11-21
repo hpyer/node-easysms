@@ -16,7 +16,7 @@ export default class HttpClientMixin
    * 获取请求客户端实例
    * @returns
    */
-  getHttpClent(): AxiosInstance {
+  getHttpClient(): AxiosInstance {
     return this.httpClient;
   }
   /**
@@ -24,7 +24,7 @@ export default class HttpClientMixin
    * @param instance
    * @returns
    */
-  setHttpClent(instance: AxiosInstance): this {
+  setHttpClient(instance: AxiosInstance): this {
     this.httpClient = instance;
     return this;
   }

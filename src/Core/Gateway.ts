@@ -59,12 +59,12 @@ abstract class Gateway {
    * @param message 消息
    * @param config 配置
    */
-  async send(to: PhoneNumber, message: Message, config: GatewayConfig) {
+  async send(to: PhoneNumber, message: Message) {
   }
 }
 
 interface Gateway extends HttpClientMixin { };
 
-applyMixins(Gateway, [ HttpClientMixin]);
+applyMixins(Gateway, [ HttpClientMixin ]);
 
 export default Gateway;
