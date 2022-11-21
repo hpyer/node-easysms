@@ -4,11 +4,11 @@ import Crypto from 'crypto';
 import Qs from 'qs';
 import Xml2js from 'xml2js';
 
-export const createHash = function (str: string, type: string = 'sha1', encode: Crypto.BinaryToTextEncoding = 'hex'): any {
+export const createHash = function (str: Crypto.BinaryLike, type: string = 'sha1', encode: Crypto.BinaryToTextEncoding = 'hex'): any {
   return Crypto.createHash(type).update(str).digest(encode);
 };
 
-export const createHmac = function (str: string, key: string, type: string = 'sha256', encode: Crypto.BinaryToTextEncoding = 'hex'): any {
+export const createHmac = function (str: Crypto.BinaryLike, key: Crypto.BinaryLike | Crypto.KeyObject, type: string = 'sha256', encode: Crypto.BinaryToTextEncoding = 'hex'): any {
   return Crypto.createHmac(type, key).update(str).digest(encode);
 };
 
@@ -29,10 +29,11 @@ export const randomString = function (len: number = 16): string {
 /**
  * 获取时间戳
  * @param format 默认返回时间戳
+ * @param date 指定日期对象，默认：当前时间
  * @returns
  */
-export const timestamp = function (format: string = null): string {
-  let date = new Date;
+export const timestamp = function (format: string = null, date: Date = null): string {
+  if (!date || !(date instanceof Date)) date = new Date;
   let str = format || 'u';
   str = str.replace(/yyyy|YYYY/, pad(date.getFullYear(), 4));
   str = str.replace(/yy|YY/, (date.getFullYear() % 100) > 8 ? (date.getFullYear() % 100).toString() : '0' + (date.getFullYear() % 100));
@@ -53,10 +54,11 @@ export const timestamp = function (format: string = null): string {
 /**
  * 获取UTC时间戳
  * @param format 默认返回时间戳
+ * @param date 指定日期对象，默认：当前时间
  * @returns
  */
-export const timestampUTC = function (format: string = null): string {
-  let date = new Date;
+export const timestampUTC = function (format: string = null, date: Date = null): string {
+  if (!date || !(date instanceof Date)) date = new Date;
   let str = format || 'u';
   str = str.replace(/yyyy|YYYY/, pad(date.getUTCFullYear(), 4));
   str = str.replace(/yy|YY/, (date.getUTCFullYear() % 100) > 8 ? (date.getUTCFullYear() % 100).toString() : '0' + (date.getUTCFullYear() % 100));
