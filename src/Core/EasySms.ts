@@ -212,6 +212,7 @@ export default class EasySms {
 
     let globalSettings: GatewayConfigMap = this.config.get('gateways', {});
     for (let gateway of formatted) {
+      if (typeof globalSettings[gateway] === 'undefined') continue;
       let config = globalSettings[gateway] || {};
       // 重置网关标识
       config.gateway = gateway;
