@@ -58,17 +58,17 @@ export const timestamp = function (format: string = null): string {
 export const timestampUTC = function (format: string = null): string {
   let date = new Date;
   let str = format || 'u';
-  str = str.replace(/yyyy|YYYY/, this.pad(date.getUTCFullYear(), 4));
+  str = str.replace(/yyyy|YYYY/, pad(date.getUTCFullYear(), 4));
   str = str.replace(/yy|YY/, (date.getUTCFullYear() % 100) > 8 ? (date.getUTCFullYear() % 100).toString() : '0' + (date.getUTCFullYear() % 100));
   str = str.replace(/MM/, date.getUTCMonth() > 8 ? (date.getUTCMonth() + 1).toString() : ('0' + (date.getUTCMonth() + 1)));
   str = str.replace(/M/g, (date.getUTCMonth() + 1) + '');
-  str = str.replace(/dd|DD/, this.pad(date.getUTCDate()));
+  str = str.replace(/dd|DD/, pad(date.getUTCDate(), 2));
   str = str.replace(/d|D/g, date.getUTCDate() + '');
-  str = str.replace(/hh|HH/, this.pad(date.getUTCHours()));
+  str = str.replace(/hh|HH/, pad(date.getUTCHours(), 2));
   str = str.replace(/h|H/g, date.getUTCHours() + '');
-  str = str.replace(/mm/, this.pad(date.getUTCMinutes()));
+  str = str.replace(/mm/, pad(date.getUTCMinutes(), 2));
   str = str.replace(/m/g, date.getUTCMinutes() + '');
-  str = str.replace(/ss|SS/, this.pad(date.getUTCSeconds()));
+  str = str.replace(/ss|SS/, pad(date.getUTCSeconds(), 2));
   str = str.replace(/s|S/g, date.getUTCSeconds() + '');
   str = str.replace(/u/g, parseInt((date.getTime() / 1000).toString()) + '');
   return str;
