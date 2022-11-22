@@ -153,7 +153,7 @@ export default class HttpClientMixin
     });
   }
 
-  protected async unwrapResponse(response: AxiosResponse): Promise<Record<string, any>> {
+  protected async unwrapResponse(response: AxiosResponse): Promise<any> {
     let contentType = response.headers['Content-Type'];
     let content = response.data;
 
