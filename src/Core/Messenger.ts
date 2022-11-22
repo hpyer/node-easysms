@@ -11,20 +11,20 @@ export default class Messenger {
   /**
    * 成果状态
    */
-  public static STATUS_SUCCESS: string = 'success';
+  public static STATUS_SUCCESS: 'success' = 'success';
   /**
    * 失败状态
    */
-  public static STATUS_FAILURE: string = 'failure';
+  public static STATUS_FAILURE: 'failure' = 'failure';
 
   /**
    * 执行策略，顺序执行
    */
-  public static STRATEGY_ORDER: string = 'order';
+  public static STRATEGY_ORDER: 'order' = 'order';
   /**
    * 执行策略，随机执行
    */
-  public static STRATEGY_RANDOM: string = 'random';
+  public static STRATEGY_RANDOM: 'random' = 'random';
 
   protected app: EasySms = null;
 
@@ -62,7 +62,7 @@ export default class Messenger {
       catch (e) {
         results.push({
           gateway,
-          status: Messenger.STATUS_SUCCESS,
+          status: Messenger.STATUS_FAILURE,
           exception: e,
         });
       }

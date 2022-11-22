@@ -58,7 +58,7 @@ export declare interface MessengerResult {
   /**
    * 请求状态
    */
-  status: string;
+  status: 'success' | 'failure';
   /**
    * 网关返回数据
    */
