@@ -17,6 +17,7 @@ export default class Message {
   protected gateways: string[] = [];
   protected type: string = '';
 
+  protected signature: string | MessagePropertyClosure<string> = '';
   protected content: string | MessagePropertyClosure<string> = '';
   protected template: string | MessagePropertyClosure<string> = '';
   protected data: Record<string, string | number> | Array<string | number> | MessagePropertyClosure<Record<string, string | number> | Array<string | number>> = null;
@@ -24,6 +25,9 @@ export default class Message {
   constructor(attributes: MessageProperty, type: string = Message.TEXT_MESSAGE) {
     this.type = type;
 
+    if (attributes['signature']) {
+      this.signature = attributes['signature'];
+    }
     if (attributes['content']) {
       this.content = attributes['content'];
     }
@@ -79,6 +83,27 @@ export default class Message {
    */
   getMessageType() {
     return this.type;
+  }
+
+  /**
+   * 设置消息签名
+   * @param signature
+   * @returns
+   */
+  setSignature(signature: string | MessagePropertyClosure<string>) {
+    this.signature = signature;
+    return this;
+  }
+  /**
+   * 获取消息签名
+   * @param gateway 当前网关
+   * @returns
+   */
+  async getSignature(gateway: GatewayInterface) {
+    if (typeof this.signature === 'function') {
+      return await this.signature(gateway)
+    }
+    return this.signature;
   }
 
   /**

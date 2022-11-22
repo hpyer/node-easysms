@@ -21,7 +21,7 @@ export default class TencentGateway extends Gateway {
 
   async send(to: PhoneNumber, message: Message) {
     let data = await message.getData(this);
-    let signName = this.config['sign_name'] ?? '';
+    let signName = (await message.getSignature(this)) ?? this.config['sign_name'] ?? '';
 
     let phone = to.getUniversalNumber();
     let params = {

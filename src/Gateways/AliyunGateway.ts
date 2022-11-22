@@ -21,8 +21,7 @@ export default class AliyunGateway extends Gateway {
 
   async send(to: PhoneNumber, message: Message) {
     let data = await message.getData(this);
-    let signName = data['sign_name'] ?? this.config['sign_name'] ?? '';
-    delete data['sign_name'];
+    let signName = (await message.getSignature(this)) ?? this.config['sign_name'] ?? '';
 
     let query = {
       RegionId: this.config['region'] || 'cn-hangzhou',
