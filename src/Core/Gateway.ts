@@ -54,6 +54,25 @@ abstract class Gateway {
   }
 
   /**
+   * 根据模板获取消息内容
+   * @param message
+   * @returns
+   */
+  async getContentFromTemplate(message: Message) {
+    let content = await message.getTemplate(this);
+    if (!content) return '';
+
+    let data = await message.getData(this);
+    let keys = Object.keys(data);
+    if (keys.length === 0) return content;
+
+    for (let key of keys) {
+      content = content.replace(new RegExp(`{${key}}`, 'g'), data[key] + '');
+    }
+    return content;
+  }
+
+  /**
    * 发送短信
    * @param to 手机号
    * @param message 消息
