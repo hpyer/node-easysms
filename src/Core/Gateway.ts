@@ -59,7 +59,8 @@ abstract class Gateway {
    * @param message 消息
    * @param config 配置
    */
-  async send(to: PhoneNumber, message: Message) {
+  async send(to: PhoneNumber, message: Message): Promise<Record<string, any>> {
+    return null;
   }
 }
 
