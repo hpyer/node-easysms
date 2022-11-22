@@ -5,12 +5,13 @@ import OrderStrategy from "./Strategies/OrderStrategy";
 import RandomStrategy from "./Strategies/RandomStrategy";
 import { CreatedGateways, CustomGatewayCreators, EasySmsConfig, GatewayConfig, GatewayConfigMap, GatewayConstructable, GatewayCreator, MessageProperty, MessengerStrategyClosure, SupportGateways } from "../Types/global";
 import Config from "./Config";
-import GatewayInterface from "./Gateway";
+import Gateway from "./Gateway";
 import Message from "./Message";
 import Messenger from "./Messenger";
 import PhoneNumber from "./PhoneNumber";
 import AliyunGateway from "../Gateways/AliyunGateway";
 import TencentGateway from "../Gateways/TencentGateway";
+import { isGatewayConstructable } from "./Support/Utils";
 
 export default class EasySms {
 
@@ -86,7 +87,7 @@ export default class EasySms {
    * @param func
    * @returns
    */
-  extend(name: string, func: GatewayCreator) {
+  extend(name: string, func: GatewayCreator | GatewayConstructable) {
     this.customCreators[name.toLowerCase()] = func;
     return this;
   }
@@ -165,7 +166,7 @@ export default class EasySms {
       config.gateway = name;
     }
     if (typeof config.timeout === 'undefined') {
-      config.timeout = this.config.get('timeout', GatewayInterface.DEFAULT_TIMEOUT);
+      config.timeout = this.config.get('timeout', Gateway.DEFAULT_TIMEOUT);
     }
 
     if (typeof config.gateway == 'string') {
@@ -182,12 +183,16 @@ export default class EasySms {
     return this.buildGateway(config.gateway, config);
   }
 
-  protected buildGateway(className: GatewayConstructable, config: GatewayConfig): GatewayInterface {
+  protected buildGateway(className: GatewayConstructable, config: GatewayConfig): Gateway {
     return new className(config);
   }
 
-  protected callCustomCreator(name: string, config: GatewayConfig): GatewayInterface {
-    return this.customCreators[name](config);
+  protected callCustomCreator(name: string, config: GatewayConfig): Gateway {
+    if (isGatewayConstructable(this.customCreators[name])) {
+      let className = this.customCreators[name] as GatewayConstructable;
+      return new className(config);
+    }
+    return (this.customCreators[name] as GatewayCreator)(config);
   }
 
   protected formatPhoneNumber(number: string | PhoneNumber) {

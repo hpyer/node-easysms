@@ -41,10 +41,10 @@ export declare interface MessageProperty {
 /**
  * 消息属性闭包
  */
-export declare type MessagePropertyClosure<T> = (gateway: GatewayInterface) => Promise<T>;
+export declare type MessagePropertyClosure<T> = (gateway: Gateway) => Promise<T>;
 
 export declare interface GatewayConstructable {
-  new(config: object): GatewayInterface;
+  new(config: object): Gateway;
 }
 
 /**
@@ -87,7 +87,7 @@ export declare interface SupportGateways {
  * 已创建的网关映射表，键名为网关标识，键值为网关实例
  */
 export declare interface CreatedGateways {
-  [key: string]: GatewayInterface;
+  [key: string]: Gateway;
 }
 
 /**
@@ -160,7 +160,7 @@ export declare interface EasySmsConfig {
  * 自定义网关创建方法映射表，键名为网关标识，键值为对应的创建方法
  */
 export declare interface CustomGatewayCreators {
-  [key: string]: GatewayCreator;
+  [key: string]: GatewayCreator | GatewayConstructable;
 }
 
 /**
