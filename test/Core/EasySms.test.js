@@ -123,20 +123,26 @@ class TestUnit extends BaseTestUnit {
 
       let app = new EasySms({
         gateways: {
-          custom: custom_config,
+          custom1: custom_config,
+          custom2: custom_config,
         }
       });
 
-      app.extend('custom', function (config) {
+      app.extend('custom1', function (config) {
         return new TestCustomGateway(config);
       });
+      let gateway1 = app.gateway('custom1');
+      let config1 = gateway1.getConfig();
+      this.assert.strictEqual(gateway1 instanceof TestCustomGateway, true);
+      this.assert.strictEqual(config1.custom_id, custom_config.custom_id);
+      this.assert.strictEqual(config1.custom_key, custom_config.custom_key);
 
-      let gateway = app.gateway('custom');
-      let config = gateway.getConfig();
-
-      this.assert.strictEqual(gateway instanceof TestCustomGateway, true);
-      this.assert.strictEqual(config.custom_id, custom_config.custom_id);
-      this.assert.strictEqual(config.custom_key, custom_config.custom_key);
+      app.extend('custom2', TestCustomGateway);
+      let gateway2 = app.gateway('custom2');
+      let config2 = gateway2.getConfig();
+      this.assert.strictEqual(gateway2 instanceof TestCustomGateway, true);
+      this.assert.strictEqual(config2.custom_id, custom_config.custom_id);
+      this.assert.strictEqual(config2.custom_key, custom_config.custom_key);
     });
 
     it('Should send correctly.', async () => {
