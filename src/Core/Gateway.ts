@@ -6,16 +6,16 @@ import Message from "./Message";
 import { applyMixins } from "./Support/Utils";
 import HttpClientMixin from "./Mixins/HttpClientMixin";
 
-abstract class Gateway {
+abstract class Gateway<T = GatewayConfig> {
   /**
    * 默认请求超时时间，单位：毫秒
    */
   public static DEFAULT_TIMEOUT: number = 5000;
 
-  protected config: GatewayConfig;
+  protected config: T;
   protected timeout: number;
 
-  constructor(config: GatewayConfig) {
+  constructor(config: T) {
     this.config = config;
   }
 
@@ -23,7 +23,7 @@ abstract class Gateway {
    * 获取网关配置
    * @returns
    */
-  getConfig(): GatewayConfig {
+  getConfig(): T {
     return this.config;
   }
   /**
@@ -31,7 +31,7 @@ abstract class Gateway {
    * @param config
    * @returns
    */
-  setConfig(config: GatewayConfig) {
+  setConfig(config: T) {
     this.config = config;
     return this;
   }
@@ -41,7 +41,7 @@ abstract class Gateway {
    * @returns
    */
   getTimeout() {
-    return this.timeout ?? this.config.timeout;
+    return this.timeout ?? this.config['timeout'];
   }
   /**
    * 设置超时时间，单位：毫秒

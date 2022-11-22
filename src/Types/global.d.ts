@@ -113,8 +113,54 @@ export declare interface GatewayConfig {
    * 请求的超时时间，单位：毫秒
    */
   timeout?: number;
+  /**
+   * 短信签名，如果消息中未设置，则取该值
+   */
+  sign_name?: string,
 
   [key: string]: any;
+}
+
+/**
+ * 阿里云配置项
+ */
+export declare interface AliyunGatewayConfig extends GatewayConfig {
+  /**
+   * AccessKey ID，必填
+   */
+  access_key_id: string,
+  /**
+   * AccessKey Secret，必填
+   */
+  access_key_secret: string,
+  /**
+   * 地域ID，默认：cn-hangzhou
+   * @see https://help.aliyun.com/document_detail/419270.html
+   */
+  region?: string,
+}
+
+/**
+ * 腾讯云配置项
+ */
+export declare interface TencentGatewayConfig extends GatewayConfig {
+  /**
+   * 短信 SdkAppId，必填
+   */
+  sdk_app_id: string,
+  /**
+   * SecretId，必填
+   */
+  secret_id: string,
+  /**
+   * SecretKey，必填
+   */
+  secret_key: string,
+  /**
+   * 地域ID，默认：ap-guangzhou
+   * @see https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8
+   */
+  region?: string,
 }
 
 /**
@@ -122,6 +168,16 @@ export declare interface GatewayConfig {
  */
 export declare interface GatewayConfigMap {
   [key: string]: GatewayConfig;
+
+  /**
+   * 阿里云配置项
+   */
+  aliyun: AliyunGatewayConfig,
+
+  /**
+   * 腾讯云配置项
+   */
+  tencent: TencentGatewayConfig,
 }
 
 /**
