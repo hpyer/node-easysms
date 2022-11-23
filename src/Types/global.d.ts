@@ -27,7 +27,7 @@ export declare interface MessageProperty {
   /**
    * 消息签名
    */
-  signature?: string | MessagePropertyClosure<string>;
+  sign_name?: string | MessagePropertyClosure<string>;
   /**
    * 文字内容，使用在像云片类似的以文字内容发送的平台
    */

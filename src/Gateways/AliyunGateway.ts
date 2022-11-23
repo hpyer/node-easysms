@@ -22,7 +22,7 @@ export default class AliyunGateway extends Gateway<AliyunGatewayConfig> {
 
   async send(to: PhoneNumber, message: Message) {
     let data = await message.getData(this);
-    let signName = (await message.getSignature(this)) ?? this.config['sign_name'] ?? '';
+    let signName = (await message.getSignName(this)) ?? this.config['sign_name'] ?? '';
 
     let query = {
       RegionId: this.config['region'] || 'cn-hangzhou',
