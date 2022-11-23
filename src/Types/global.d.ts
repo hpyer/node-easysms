@@ -39,7 +39,7 @@ export declare interface MessageProperty {
   /**
    * 模板变量，使用在以模板来发送短信的平台
    */
-  data?: Record<string, string | number> | Array<string | number> | MessagePropertyClosure<Record<string, string | number> | Array<string | number>>;
+  data?: Record<string, string | number> | MessagePropertyClosure<Record<string, string | number>>;
 }
 
 /**

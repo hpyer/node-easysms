@@ -20,7 +20,7 @@ export default class Message {
   protected signature: string | MessagePropertyClosure<string> = '';
   protected content: string | MessagePropertyClosure<string> = '';
   protected template: string | MessagePropertyClosure<string> = '';
-  protected data: Record<string, string | number> | Array<string | number> | MessagePropertyClosure<Record<string, string | number> | Array<string | number>> = null;
+  protected data: Record<string, string | number> | MessagePropertyClosure<Record<string, string | number>> = null;
 
   constructor(attributes: MessageProperty, type: string = Message.TEXT_MESSAGE) {
     this.type = type;
@@ -35,11 +35,11 @@ export default class Message {
       this.template = attributes['template'];
     }
     if (attributes['data']) {
-      if (Array.isArray(attributes['data'])) {
-        this.data = [].concat(attributes['data']);
+      if (typeof this.data === 'function') {
+        this.data = attributes['data'];
       }
       else {
-        this.data = {...attributes['data']};
+        this.data = { ...attributes['data'] };
       }
     }
   }
@@ -148,9 +148,9 @@ export default class Message {
     return this.template;
   }
 
-  setData(data: Record<string, string | number> | Array<string | number> | MessagePropertyClosure<Record<string, string | number> | Array<string | number>>) {
-    if (Array.isArray(data)) {
-      this.data = [].concat(data);
+  setData(data: Record<string, string | number> | MessagePropertyClosure<Record<string, string | number>>) {
+    if (typeof this.data === 'function') {
+      this.data = data;
     }
     else {
       this.data = { ...data };

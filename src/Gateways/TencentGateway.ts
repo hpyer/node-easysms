@@ -30,7 +30,7 @@ export default class TencentGateway extends Gateway<TencentGatewayConfig> {
       SmsSdkAppId: this.config['sdk_app_id'],
       SignName: signName,
       TemplateId: await message.getTemplate(this),
-      TemplateParamSet: data,
+      TemplateParamSet: Object.values(data) || [],
     };
 
     let time = timestamp();
