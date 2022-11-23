@@ -35,7 +35,7 @@ export default class Message {
       this.template = attributes['template'];
     }
     if (attributes['data']) {
-      if (typeof this.data === 'function') {
+      if (typeof attributes['data'] === 'function') {
         this.data = attributes['data'];
       }
       else {
@@ -149,7 +149,7 @@ export default class Message {
   }
 
   setData(data: Record<string, string | number> | MessagePropertyClosure<Record<string, string | number>>) {
-    if (typeof this.data === 'function') {
+    if (typeof data === 'function') {
       this.data = data;
     }
     else {
