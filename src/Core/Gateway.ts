@@ -73,6 +73,14 @@ abstract class Gateway<T = GatewayConfig> {
   }
 
   /**
+   * 获取当前类名
+   * @returns
+   */
+  getName() {
+    return this.constructor.name.replace('Gateway', '').toLowerCase();
+  }
+
+  /**
    * 发送短信
    * @param to 手机号
    * @param message 消息
