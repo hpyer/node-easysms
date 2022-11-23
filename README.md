@@ -23,14 +23,18 @@ let app = new EasySms({
   default: {
     gateways: ['aliyun']
   },
-  aliyun: {
-    access_key_id: 'your-key-id',
-    access_key_secret: 'your-key-secret',
-    region: 'cn-hangzhou',
-  },
+  gateways: {
+    aliyun: {
+      access_key_id: 'your-key-id',
+      access_key_secret: 'your-key-secret',
+      region: 'cn-hangzhou',
+      sign_name: 'xx平台',
+    },
+  }
 });
 
 let response = app.send('13812341234', {
+  sign_name: 'xx平台',
   template: 'template_id',
   data: {
     code: '1234',
