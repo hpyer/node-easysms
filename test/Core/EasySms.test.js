@@ -147,8 +147,21 @@ class TestUnit extends BaseTestUnit {
 
     it('Should send correctly.', async () => {
 
+      let that = this;
+
       class TestCustomGateway extends Gateway {
         async send(to, message, config) {
+          let content = await message.getContent(this);
+          let template = await message.getTemplate(this);
+          let data = await message.getData(this);
+
+          that.assert.strictEqual(content, 'Test content');
+          that.assert.strictEqual(template, 'Test template');
+          that.assert.deepStrictEqual(data, {
+            a: '123',
+            b: '456',
+          });
+
           return await this.get('/test-url');
         }
       }
@@ -178,6 +191,14 @@ class TestUnit extends BaseTestUnit {
 
       let result = await app.send('13812341234', {
         content: 'Test content',
+        template: 'Test template',
+        data: function (gateway) {
+          that.assert.strictEqual(gateway.getName(), 'testcustom');
+          return {
+            a: '123',
+            b: '456',
+          };
+        },
       });
       this.assert.deepStrictEqual(result, [{
         gateway: 'custom',
