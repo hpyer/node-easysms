@@ -57,16 +57,13 @@ export default class AliyunGateway extends Gateway<AliyunGatewayConfig> {
     let keys = Object.keys(params);
     keys = keys.sort();
     for (let i = 0; i < keys.length; i++) {
-      paramsString += sparator + keys[i] + '=' + params[keys[i]];
+      paramsString += sparator + encodeURIComponent(keys[i]) + '=' + encodeURIComponent(params[keys[i]]);
       sparator = '&';
-    }
-    if (key) {
-      paramsString += '&key=' + key;
     }
     paramsString = 'GET&%2F&' + encodeURIComponent(paramsString);
     paramsString = paramsString.replace(/%7E/g, '~');
-    let sign = createHmac(paramsString, key, 'sha1', 'base64');
-    return (sign + '').toUpperCase();
+
+    return createHmac(paramsString, key + '&', 'sha1', 'base64');
   }
 
 }
