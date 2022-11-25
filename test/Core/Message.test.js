@@ -27,6 +27,8 @@ class TestUnit extends BaseTestUnit {
 
     it('Should create custom message correctly.', async () => {
       class OrderMessage extends Message {
+        gateways = ['foo', 'bar'];
+
         constructor(order) {
           super({});
           this.order = order;
@@ -60,6 +62,7 @@ class TestUnit extends BaseTestUnit {
         d: '456',
       });
       this.assert.strictEqual(await message.getSignName(), 'custom-sign_name-mock-name');
+      this.assert.deepStrictEqual(message.getGateways(), ['foo', 'bar']);
     });
 
   }
