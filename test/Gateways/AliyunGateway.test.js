@@ -6,6 +6,30 @@ class TestUnit extends BaseTestUnit {
 
   test() {
 
+    it('Should generate signature correctly.', async () => {
+
+      let gateway = new AliyunGateway({
+        access_key_id: 'testid',
+        access_key_secret: 'testsecret',
+        region: 'mock-region',
+        sign_name: 'mock-sign-name',
+      });
+
+      let sign = gateway.generateSign({
+        AccessKeyId: 'testid',
+        Format: 'XML',
+        SignatureMethod: 'HMAC-SHA1',
+        SignatureVersion: '1.0',
+        SignatureNonce: '3ee8c1b8-xxxx-xxxx-xxxx-xxxxxxxxx',
+        Timestamp: '2016-02-23T12:46:24Z',
+        Action: 'DescribeDedicatedHosts',
+        Version: '2014-05-26',
+      }, 'testsecret');
+
+      this.assert.strictEqual(sign, 'rARsF+BIg8pZ4e0ln6Z96lBMDms=');
+
+    });
+
     it('Should return send correctly.', async () => {
       let to = new PhoneNumber('13812345678');
       let message = new Message({
