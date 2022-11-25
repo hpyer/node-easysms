@@ -213,33 +213,32 @@ export const pad = function (str: string | number, len: number, chr: string = ' 
   return leftJustify ? padding + str : str + padding
 }
 
-// 将单词首字母转成大写，'hello word' => 'Hello World'
-export const strUcwords = function (str: string): string
-{
-  return str.replace(/\b[a-z]/gi, function (letter) {
-    return letter.toUpperCase();
-  });
-};
+/**
+ * 去除字符串左右的空格
+ * @param str 原字符串
+ */
+export const trim = function (str: string): string {
+  if (typeof str !== 'string') str = str + '';
+  return str.replace(/^\s+/, '').replace(/\s+$/, '');
+}
 
-// 将单词首字母转成小写，'Hello World' => 'hello word'
-export const strLcwords = function (str: string): string
-{
-  return str.replace(/\b[a-z]/gi, function (letter) {
-    return letter.toLowerCase();
-  });
-};
+/**
+ * 去除字符串左侧的空格
+ * @param str 原字符串
+ */
+export const ltrim = function (str: string): string {
+  if (typeof str !== 'string') str = str + '';
+  return str.replace(/^\s+/, '');
+}
 
-// 驼峰（首字母大写），'hello word' => 'HelloWorld'
-export const strStudly = function (value: string): string
-{
-  return strUcwords(value.replace(/[\-|\_]/gi, ' ')).replace(/\s/gi, '');
-};
-
-// 驼峰（首字母小写），'hello word' => 'helloWorld'
-export const strCamel = function (value: string): string
-{
-  return strLcwords(strStudly(value));
-};
+/**
+ * 去除字符串右侧的空格
+ * @param str 原字符串
+ */
+export const rtrim = function (str: string): string {
+  if (typeof str !== 'string') str = str + '';
+  return str.replace(/\s+$/, '');
+}
 
 /**
  * 判断是否网关类型
