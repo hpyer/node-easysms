@@ -164,6 +164,29 @@ export declare interface TencentGatewayConfig extends GatewayConfig {
 }
 
 /**
+ * 百度云配置项
+ */
+export declare interface BaiduGatewayConfig extends GatewayConfig {
+  /**
+   * Access Key Id，必填
+   */
+  ak: string,
+  /**
+   * Secret Access Key，必填
+   */
+  sk: string,
+  /**
+   * 短信签名ID，必填
+   */
+  sign_name: string,
+  /**
+   * 服务域名，默认：smsv3.bj.baidubce.com
+   * @see https://cloud.baidu.com/doc/SMS/s/pjwvxrw6w
+   */
+  domain?: string,
+}
+
+/**
  * 网关配置映射
  */
 export declare interface GatewayConfigMap {

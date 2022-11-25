@@ -9,9 +9,10 @@ import Gateway from "./Gateway";
 import Message from "./Message";
 import Messenger from "./Messenger";
 import PhoneNumber from "./PhoneNumber";
+import { isGatewayConstructable } from "./Support/Utils";
 import AliyunGateway from "../Gateways/AliyunGateway";
 import TencentGateway from "../Gateways/TencentGateway";
-import { isGatewayConstructable } from "./Support/Utils";
+import BaiduGateway from "../Gateways/BaiduGateway";
 
 export default class EasySms {
 
@@ -21,6 +22,7 @@ export default class EasySms {
   protected supportGateways: SupportGateways = {
     aliyun: AliyunGateway,
     tencent: TencentGateway,
+    baidu: BaiduGateway,
   };
   protected messenger: Messenger = null;
   protected httpClient: AxiosInstance;
