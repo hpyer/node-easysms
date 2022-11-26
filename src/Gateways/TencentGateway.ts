@@ -59,13 +59,16 @@ export default class TencentGateway extends Gateway<TencentGatewayConfig> {
   }
 
   generateSign(params: Record<string, any>, time: string) {
-    let date = timestampUTC('YYYY-MM-DD', new Date(time + '000'));
+    let date = timestampUTC('YYYY-MM-DD', new Date(parseInt(time + '000')));
     let secretKey = this.config['secret_key'];
     let secretId = this.config['secret_id'];
 
-    let canonicalRequest = `POST
-/
+    let CanonicalURI = '/';
+    let CanonicalQueryString = '';
 
+    let canonicalRequest = `POST
+${CanonicalURI}
+${CanonicalQueryString}
 content-type:application/json; charset=utf-8
 host:${TencentGateway.ENDPOINT_HOST}
 
@@ -75,11 +78,12 @@ ${createHash(JSON.stringify(params), 'sha256')}`;
     let stringToSign = `TC3-HMAC-SHA256
 ${time}
 ${date}/${TencentGateway.ENDPOINT_SERVICE}/tc3_request
-${createHash(JSON.stringify(canonicalRequest), 'sha256')}`;
+${createHash(canonicalRequest, 'sha256')}`;
 
-    let secretDate = createHmac(date, `TC3${secretKey}`, 'sha256', 'binary');
-    let secretService = createHmac(TencentGateway.ENDPOINT_SERVICE, secretDate, 'sha256', 'binary');
-    let secretSigning = createHmac('tc3_request', secretService, 'sha256', 'binary');
+    let secretDate = createHmac(date, `TC3${secretKey}`, 'sha256', null);
+    let secretService = createHmac(TencentGateway.ENDPOINT_SERVICE, secretDate, 'sha256', null);
+    let secretSigning = createHmac('tc3_request', secretService, 'sha256', null);
+
     let signature = createHmac(stringToSign, secretSigning, 'sha256');
 
     return 'TC3-HMAC-SHA256'
