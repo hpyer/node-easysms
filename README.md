@@ -67,7 +67,7 @@ let number = new PhoneNumber('13812345678', 31);
 
 let easySms = new EasySms({...});
 
-// 发送是，传入 PhoneNumber 实例即可
+// 发送时，传入 PhoneNumber 实例即可
 easySms.send(number, {...});
 ```
 
@@ -93,7 +93,7 @@ easySms.send('13812341234', {
   data: function (gateway) {
     // 获取网关实例的类名
     let className = gateway.getName();
-    
+
     if (className === 'aliyun') {
       return {
         code: '1234',
@@ -110,7 +110,7 @@ easySms.send('13812341234', {
 
 ### 发送短信
 
-默认会根据 config.default.gateways 的配置进行发送，如果某条短信需要覆盖默认对的发送网关，可以传入第三个参数：
+默认会根据配置项中的 default.gateways 进行发送，如果某条短信需要覆盖默认对的发送网关，可以传入第三个参数：
 
 ```js
 let response = easySms.send('13812341234', {
@@ -248,17 +248,9 @@ class OrderPaidMessage extends Message {
   }
 }
 
-let easySms = new EasySms({
-  default: {
-    strategy: customStrategy,
-    gateways: []
-  },
-  gateways: {
-    ...
-  }
-});
+let easySms = new EasySms({...});
 
-let order = {};
+let order = {...};
 let message = new OrderPaidMessage(order);
 
 easySms.send(order.mobile, message);
