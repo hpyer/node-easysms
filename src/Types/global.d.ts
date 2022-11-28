@@ -195,12 +195,17 @@ export declare interface GatewayConfigMap {
   /**
    * 阿里云配置项
    */
-  aliyun: AliyunGatewayConfig,
+  aliyun?: AliyunGatewayConfig,
 
   /**
    * 腾讯云配置项
    */
-  tencent: TencentGatewayConfig,
+  tencent?: TencentGatewayConfig,
+
+  /**
+   * 百度云配置项
+   */
+  baidu?: BaiduGatewayConfig,
 }
 
 /**
