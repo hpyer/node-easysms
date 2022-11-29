@@ -187,6 +187,24 @@ export declare interface BaiduGatewayConfig extends GatewayConfig {
 }
 
 /**
+ * 七牛云配置项
+ */
+export declare interface QiniuGatewayConfig extends GatewayConfig {
+  /**
+   * Access Key，必填
+   */
+  access_key: string,
+  /**
+   * Secret Access，必填
+   */
+  secret_key: string,
+  /**
+   * 短信签名ID，选填
+   */
+  sign_name?: string,
+}
+
+/**
  * 网关配置映射
  */
 export declare interface GatewayConfigMap {
@@ -206,6 +224,11 @@ export declare interface GatewayConfigMap {
    * 百度云配置项
    */
   baidu?: BaiduGatewayConfig,
+
+  /**
+   * 七牛云配置项
+   */
+  qiniu?: QiniuGatewayConfig,
 }
 
 /**

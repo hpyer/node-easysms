@@ -13,6 +13,7 @@ import { isGatewayConstructable } from "./Support/Utils";
 import AliyunGateway from "../Gateways/AliyunGateway";
 import TencentGateway from "../Gateways/TencentGateway";
 import BaiduGateway from "../Gateways/BaiduGateway";
+import QiniuGateway from "../Gateways/QiniuGateway";
 
 export default class EasySms {
 
@@ -23,6 +24,7 @@ export default class EasySms {
     aliyun: AliyunGateway,
     tencent: TencentGateway,
     baidu: BaiduGateway,
+    qiniu: QiniuGateway,
   };
   protected messenger: Messenger = null;
   protected httpClient: AxiosInstance;

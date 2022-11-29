@@ -307,3 +307,18 @@ easySms.send(order.mobile, message);
   domain: '',  // 默认：smsv3.bj.baidubce.com
 }
 ```
+
+#### qiniu
+
+**七牛云** [文档](https://developer.qiniu.com/sms/5897/sms-api-send-message)，消息内容使用 `template` + `data`
+
+> 注意：使用 `sign_name` 设置短信签名id
+
+```js
+// 配置项
+{
+  access_key: '',
+  secret_key: '',
+  sign_name: '',
+}
+```
