@@ -205,6 +205,20 @@ export declare interface QiniuGatewayConfig extends GatewayConfig {
 }
 
 /**
+ * 云片配置项
+ */
+export declare interface YunpianGatewayConfig extends GatewayConfig {
+  /**
+   * 用户唯一标识，必填
+   */
+  api_key: string,
+  /**
+   * 服务器地址，默认：sms.yunpian.com
+   */
+  domain: string,
+}
+
+/**
  * 网关配置映射
  */
 export declare interface GatewayConfigMap {
@@ -229,6 +243,11 @@ export declare interface GatewayConfigMap {
    * 七牛云配置项
    */
   qiniu?: QiniuGatewayConfig,
+
+  /**
+   * 云片配置项
+   */
+  yunpian?: YunpianGatewayConfig,
 }
 
 /**

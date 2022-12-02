@@ -43,6 +43,13 @@ module.exports = class BaseTestUnit {
       return this.__mockedAxios[method](url, data);
     };
 
+    /**
+     * 获取请求历史
+     */
+    client.getHistory = function() {
+      return this.__mockedAxios.history;
+    }
+
     return client;
   }
 

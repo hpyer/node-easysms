@@ -322,3 +322,16 @@ easySms.send(order.mobile, message);
   sign_name: '',
 }
 ```
+
+#### yunpian
+
+**云片** [按内容发送](https://www.yunpian.com/doc/zh_CN/domestic/single_send.html)，消息内容使用 `content`，同时也支持 [按模板发送](https://www.yunpian.com/doc/zh_CN/domestic/tpl_single_send.html)，消息内容使用 `template` + `data`
+
+```js
+// 配置项
+{
+  api_key: '',
+  sign_name: '',
+  domain: '',  // 默认：sms.yunpian.com
+}
+```
