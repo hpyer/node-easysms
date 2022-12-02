@@ -219,6 +219,16 @@ export declare interface YunpianGatewayConfig extends GatewayConfig {
 }
 
 /**
+ * 聚合数据配置项
+ */
+export declare interface JuheGatewayConfig extends GatewayConfig {
+  /**
+   * 用户密钥，必填
+   */
+  app_key: string,
+}
+
+/**
  * 网关配置映射
  */
 export declare interface GatewayConfigMap {
@@ -248,6 +258,11 @@ export declare interface GatewayConfigMap {
    * 云片配置项
    */
   yunpian?: YunpianGatewayConfig,
+
+  /**
+   * 聚合数据配置项
+   */
+  juhe?: JuheGatewayConfig,
 }
 
 /**

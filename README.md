@@ -335,3 +335,15 @@ easySms.send(order.mobile, message);
   domain: '',  // 默认：sms.yunpian.com
 }
 ```
+
+#### juhe
+
+**聚合数据** [文档](https://www.juhe.cn/docs/api/id/54)，消息内容使用 `template` + `data`
+
+```js
+// 配置项
+{
+  app_key: '',
+  sign_name: '',
+}
+```

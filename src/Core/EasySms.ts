@@ -15,6 +15,7 @@ import TencentGateway from "../Gateways/TencentGateway";
 import BaiduGateway from "../Gateways/BaiduGateway";
 import QiniuGateway from "../Gateways/QiniuGateway";
 import YunpianGateway from "../Gateways/YunpianGateway";
+import JuheGateway from "../Gateways/JuheGateway";
 
 export default class EasySms {
 
@@ -27,6 +28,7 @@ export default class EasySms {
     baidu: BaiduGateway,
     qiniu: QiniuGateway,
     yunpian: YunpianGateway,
+    juhe: JuheGateway,
   };
   protected messenger: Messenger = null;
   protected httpClient: AxiosInstance;
