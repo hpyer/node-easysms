@@ -1,6 +1,6 @@
 {
   "name": "node-easysms",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "EasySMS is an SMS sender for Node.js",
   "main": "dist/index.js",
   "scripts": {
