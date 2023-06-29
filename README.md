@@ -1,7 +1,7 @@
 
 ## EasySMS is an SMS sender for Node.js
 
-[![Build Status](https://app.travis-ci.com/hpyer/node-easysms.svg?branch=master)](https://app.travis-ci.com/github/hpyer/node-easysms) [![npm](https://img.shields.io/npm/v/node-easysms.svg)](https://www.npmjs.com/package/node-easysms) [![License](https://img.shields.io/npm/l/node-easysms.svg)](LICENSE)
+![Build](https://github.com/hpyer/node-easysms/actions/workflows/build.yml/badge.svg) [![npm](https://img.shields.io/npm/v/node-easysms.svg)](https://www.npmjs.com/package/node-easysms) [![License](https://img.shields.io/npm/l/node-easysms.svg)](LICENSE)
 
 [EasySMS](https://github.com/overtrue/easy-sms) 是一个由 `安正超` 大神用 PHP 开发的开源的短信发送工具包。本项目是 EasySMS 包在 Node.js 上的实现，并且基本还原了PHP版的配置项以及接口的调用方式。
 
