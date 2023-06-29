@@ -32,7 +32,7 @@ class TestUnit extends BaseTestUnit {
       let result = await gateway.send(to, message);
 
       this.assert.strictEqual(result['sid'], 3310228982);
-      this.assert.strictEqual(axios.getHistory().post[0].data, '{"apikey":"mock-api_key","mobile":"13812345678","text":"mock-content"}');
+      this.assert.strictEqual(axios.getHistory().post[0].data, 'apikey=mock-api_key&mobile=13812345678&text=mock-content');
     });
 
     it('Should send template correctly.', async () => {
@@ -65,7 +65,7 @@ class TestUnit extends BaseTestUnit {
       let result = await gateway.send(to, message);
 
       this.assert.strictEqual(result['sid'], 3310228982);
-      this.assert.strictEqual(axios.getHistory().post[0].data, '{"apikey":"mock-api_key","mobile":"13812345678","tpl_id":"mock-template","tpl_value":"%23foo%23=123&%23bar%23=abc"}');
+      this.assert.strictEqual(axios.getHistory().post[0].data, 'apikey=mock-api_key&mobile=13812345678&tpl_id=mock-template&tpl_value=%2523foo%2523%3D123%26%2523bar%2523%3Dabc');
     });
 
   }

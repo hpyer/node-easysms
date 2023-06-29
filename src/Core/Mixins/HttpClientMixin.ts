@@ -4,8 +4,7 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from "axios"
 import FormData from 'form-data';
 import { buildXml, parseXml } from "../Support/Utils";
 
-export default class HttpClientMixin
-{
+export default class HttpClientMixin {
 
   /**
    * 请求客户端实例
@@ -38,7 +37,7 @@ export default class HttpClientMixin
 
   post(url: string, data: Record<string, any> = {}, headers: Record<string, any> = {}) {
     return this.request('post', url, {
-      formData: data,
+      data,
       headers,
     });
   }
@@ -46,6 +45,13 @@ export default class HttpClientMixin
   postJson(url: string, data: Record<string, any> = {}, headers: Record<string, any> = {}) {
     return this.request('post', url, {
       json: data,
+      headers,
+    });
+  }
+
+  postForm(url: string, data: Record<string, any> = {}, headers: Record<string, any> = {}) {
+    return this.request('post', url, {
+      formData: data,
       headers,
     });
   }

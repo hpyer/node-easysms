@@ -50,7 +50,10 @@ export default class YunpianGateway extends Gateway<YunpianGatewayConfig> {
       params['text'] = content;
     }
 
-    let result = await this.postJson(this.buildEndpoint(func, domain), params);
+    let result = await this.post(this.buildEndpoint(func, domain), params, {
+      'Accept': 'application/json;charset=utf-8',
+      'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
+    });
 
     if (result['code']) {
       throw new GatewayErrorException(result['msg'], result);
