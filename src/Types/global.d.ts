@@ -1,7 +1,7 @@
 
 import { AxiosRequestConfig } from 'axios';
 import Gateway from '../Core/Gateway';
-import Exception from '../Exception/Exception';
+import Exception from '../Core/Exceptions/Exception';
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
@@ -232,7 +232,7 @@ export declare interface JuheGatewayConfig extends GatewayConfig {
  * 网关配置映射
  */
 export declare interface GatewayConfigMap {
-  [key: string]: GatewayConfig;
+  [key: string]: GatewayConfig | undefined;
 
   /**
    * 阿里云配置项
