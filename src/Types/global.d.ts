@@ -1,7 +1,7 @@
 
 import { AxiosRequestConfig } from 'axios';
 import Gateway from '../Core/Gateway';
-import Exception from '../Exception/Exception';
+import Exception from '../Core/Exceptions/Exception';
 
 declare module 'axios' {
   export interface AxiosRequestConfig {
