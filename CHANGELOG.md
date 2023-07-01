@@ -1,6 +1,11 @@
 # CHANGELOG
 
 
+## v1.1.2 (2023-07-01)
+
+- Fix: 修复类型GatewayConfigMap类型中可能为undefined
+- Fix: 修复打包后dist目录路径引用错误问题
+
 ## v1.1.1 (2023-06-29)
 
 - Fix: 修复云片发送请求失败的问题 (#1)
