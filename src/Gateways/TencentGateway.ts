@@ -1,17 +1,16 @@
 'use strict';
 
-import GatewayErrorException from "../Core/Exceptions/GatewayErrorException";
-import Gateway from "../Core/Gateway";
-import Message from "../Core/Message";
-import PhoneNumber from "../Core/PhoneNumber";
+import { GatewayErrorException } from "../Core/Exceptions/GatewayErrorException";
+import { Gateway } from "../Core/Gateway";
+import { Message } from "../Core/Message";
+import { PhoneNumber } from "../Core/PhoneNumber";
 import { createHash, createHmac, timestamp, timestampUTC } from "../Core/Support/Utils";
-import { TencentGatewayConfig } from "../Types/global";
 
 /**
  * 腾讯云短信服务
  * @see https://cloud.tencent.com/document/product/382/55981
  */
-export default class TencentGateway extends Gateway<TencentGatewayConfig> {
+export class TencentGateway extends Gateway<TencentGatewayConfig> {
 
   public static ENDPOINT_URL: string = 'https://sms.tencentcloudapi.com';
   public static ENDPOINT_HOST: string = 'sms.tencentcloudapi.com';

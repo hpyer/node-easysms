@@ -1,23 +1,25 @@
 'use strict';
 
 import Axios, { AxiosInstance } from "axios";
-import OrderStrategy from "./Strategies/OrderStrategy";
-import RandomStrategy from "./Strategies/RandomStrategy";
-import { CreatedGateways, CustomGatewayCreators, EasySmsConfig, GatewayConfig, GatewayConfigMap, GatewayConstructable, GatewayCreator, MessageProperty, MessengerStrategyClosure, SupportGateways } from "../Types/global";
-import Config from "./Config";
-import Gateway from "./Gateway";
-import Message from "./Message";
-import Messenger from "./Messenger";
-import PhoneNumber from "./PhoneNumber";
+import { OrderStrategy } from "./Strategies/OrderStrategy";
+import { RandomStrategy } from "./Strategies/RandomStrategy";
+import { Config } from "./Config";
+import { Gateway } from "./Gateway";
+import { Message } from "./Message";
+import { Messenger } from "./Messenger";
+import { PhoneNumber } from "./PhoneNumber";
 import { isGatewayConstructable } from "./Support/Utils";
-import AliyunGateway from "../Gateways/AliyunGateway";
-import TencentGateway from "../Gateways/TencentGateway";
-import BaiduGateway from "../Gateways/BaiduGateway";
-import QiniuGateway from "../Gateways/QiniuGateway";
-import YunpianGateway from "../Gateways/YunpianGateway";
-import JuheGateway from "../Gateways/JuheGateway";
+import { AliyunGateway } from "../Gateways/AliyunGateway";
+import { TencentGateway } from "../Gateways/TencentGateway";
+import { BaiduGateway } from "../Gateways/BaiduGateway";
+import { QiniuGateway } from "../Gateways/QiniuGateway";
+import { YunpianGateway } from "../Gateways/YunpianGateway";
+import { JuheGateway } from "../Gateways/JuheGateway";
 
-export default class EasySms {
+/**
+ * EasySms
+ */
+export class EasySms {
 
   protected config: Config = null;
   protected customCreators: CustomGatewayCreators = {};

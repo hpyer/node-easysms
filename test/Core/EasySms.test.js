@@ -211,7 +211,7 @@ class TestUnit extends BaseTestUnit {
     it('Should return error when send fail.', async () => {
 
       class TestCustomGateway extends Gateway {
-        async send(to, message, config) {
+        async send(to, message) {
           throw new Error('mock-error');
         }
       }

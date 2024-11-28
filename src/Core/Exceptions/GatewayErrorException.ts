@@ -1,14 +1,14 @@
 'use strict';
 
-import Exception from "./Exception";
+export class GatewayErrorException implements Exception {
 
-export default class GatewayErrorException extends Exception {
-
-  public raw: Record<string, any> = {};
+  name: string;
+  message: string;
+  stack?: string;
+  raw: Record<string, any> = {};
 
   constructor(message: string, raw: Record<string, any>) {
-    super(message);
-
+    this.message = message;
     this.raw = raw;
   }
 

@@ -1,9 +1,11 @@
 'use strict';
 
-import { MessageProperty, MessagePropertyClosure } from "../Types/global";
-import GatewayInterface from "./Gateway";
+import { Gateway } from "./Gateway";
 
-export default class Message {
+/**
+ * 消息类
+ */
+export class Message {
 
   /**
    * 文本消息
@@ -99,7 +101,7 @@ export default class Message {
    * @param gateway 当前网关
    * @returns
    */
-  async getSignName(gateway: GatewayInterface) {
+  async getSignName(gateway: Gateway) {
     if (typeof this.sign_name === 'function') {
       return await this.sign_name(gateway)
     }
@@ -120,7 +122,7 @@ export default class Message {
    * @param gateway 当前网关
    * @returns
    */
-  async getContent(gateway: GatewayInterface) {
+  async getContent(gateway: Gateway) {
     if (typeof this.content === 'function') {
       return await this.content(gateway)
     }
@@ -141,7 +143,7 @@ export default class Message {
    * @param gateway 当前网关
    * @returns
    */
-  async getTemplate(gateway: GatewayInterface) {
+  async getTemplate<T = GatewayConfig>(gateway: Gateway<T>) {
     if (typeof this.template === 'function') {
       return await this.template(gateway)
     }
@@ -162,7 +164,7 @@ export default class Message {
    * @param gateway 当前网关
    * @returns
    */
-  async getData(gateway: GatewayInterface) {
+  async getData<T = GatewayConfig>(gateway: Gateway<T>) {
     if (typeof this.data === 'function') {
       return await this.data(gateway);
     }

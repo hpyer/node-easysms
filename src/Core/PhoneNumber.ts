@@ -1,10 +1,17 @@
 'use strict';
 
-export default class PhoneNumber {
+/**
+ * 电话号码类
+ */
+export class PhoneNumber {
 
   protected number: string = '';
   protected IDDCode: string = '';
 
+  /**
+   * @param number 电话号码，如：13812345678
+   * @param IDDCode 国际长途区号，如：86
+   */
   constructor(number: string | number, IDDCode: string | number = null) {
     this.number = number + '';
     if (IDDCode) {

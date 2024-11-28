@@ -1,12 +1,14 @@
 'use strict';
 
-import NoGatewayAvailableException from "./Exceptions/NoGatewayAvailableException";
-import { GatewayConfig, MessengerResult } from "../Types/global";
-import EasySms from "./EasySms";
-import Message from "./Message";
-import PhoneNumber from "./PhoneNumber";
+import { NoGatewayAvailableException } from "./Exceptions/NoGatewayAvailableException";
+import { EasySms } from "./EasySms";
+import { Message } from "./Message";
+import { PhoneNumber } from "./PhoneNumber";
 
-export default class Messenger {
+/**
+ * 消息发送器
+ */
+export class Messenger {
 
   /**
    * 成果状态

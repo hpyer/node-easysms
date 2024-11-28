@@ -1,17 +1,16 @@
 'use strict';
 
-import GatewayErrorException from "../Core/Exceptions/GatewayErrorException";
-import Gateway from "../Core/Gateway";
-import Message from "../Core/Message";
-import PhoneNumber from "../Core/PhoneNumber";
+import { GatewayErrorException } from "../Core/Exceptions/GatewayErrorException";
+import { Gateway } from "../Core/Gateway";
+import { Message } from "../Core/Message";
+import { PhoneNumber } from "../Core/PhoneNumber";
 import { createHmac, randomString, timestampUTC } from "../Core/Support/Utils";
-import { AliyunGatewayConfig } from "../Types/global";
 
 /**
  * 阿里云短信服务
  * @see https://help.aliyun.com/document_detail/419273.html
  */
-export default class AliyunGateway extends Gateway<AliyunGatewayConfig> {
+export class AliyunGateway extends Gateway<AliyunGatewayConfig> {
 
   public static ENDPOINT_URL: string = 'http://dysmsapi.aliyuncs.com';
   public static ENDPOINT_METHOD: string = 'SendSms';

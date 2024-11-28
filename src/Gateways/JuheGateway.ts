@@ -1,16 +1,15 @@
 'use strict';
 
-import GatewayErrorException from "../Core/Exceptions/GatewayErrorException";
-import Gateway from "../Core/Gateway";
-import Message from "../Core/Message";
-import PhoneNumber from "../Core/PhoneNumber";
-import { JuheGatewayConfig } from "../Types/global";
+import { GatewayErrorException } from "../Core/Exceptions/GatewayErrorException";
+import { Gateway } from "../Core/Gateway";
+import { Message } from "../Core/Message";
+import { PhoneNumber } from "../Core/PhoneNumber";
 
 /**
  * 聚合数据短信服务
  * @see https://www.juhe.cn/docs/api/id/54
  */
-export default class JuheGateway extends Gateway<JuheGatewayConfig> {
+export class JuheGateway extends Gateway<JuheGatewayConfig> {
 
   public static ENDPOINT_URL: string = 'http://v.juhe.cn/sms/send';
 

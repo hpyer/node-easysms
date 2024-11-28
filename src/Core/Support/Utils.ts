@@ -3,7 +3,6 @@
 import Crypto from 'crypto';
 import Qs from 'qs';
 import Xml2js from 'xml2js';
-import { GatewayConstructable } from '../../Types/global';
 
 export const createHash = function (str: Crypto.BinaryLike, type: string = 'sha1', encode: Crypto.BinaryToTextEncoding = 'hex'): any {
   return Crypto.createHash(type).update(str).digest(encode);

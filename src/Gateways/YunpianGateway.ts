@@ -1,17 +1,16 @@
 'use strict';
 
-import GatewayErrorException from "../Core/Exceptions/GatewayErrorException";
-import Gateway from "../Core/Gateway";
-import Message from "../Core/Message";
-import PhoneNumber from "../Core/PhoneNumber";
-import { YunpianGatewayConfig } from "../Types/global";
+import { GatewayErrorException } from "../Core/Exceptions/GatewayErrorException";
+import { Gateway } from "../Core/Gateway";
+import { Message } from "../Core/Message";
+import { PhoneNumber } from "../Core/PhoneNumber";
 
 /**
  * 云片短信服务
  * @see [按内容发送](https://www.yunpian.com/doc/zh_CN/domestic/single_send.html)
  * @see [按模板发送](https://www.yunpian.com/doc/zh_CN/domestic/tpl_single_send.html)
  */
-export default class YunpianGateway extends Gateway<YunpianGatewayConfig> {
+export class YunpianGateway extends Gateway<YunpianGatewayConfig> {
 
   public static ENDPOINT_DOMAIN: string = 'sms.yunpian.com';
   public static ENDPOINT_VERSION: string = 'v2';

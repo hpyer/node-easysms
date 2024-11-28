@@ -1,6 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const { PhoneNumber, Message } = require('../../dist');
-const { default: YunpianGateway } = require('../../dist/Gateways/YunpianGateway');
+const { YunpianGateway } = require('../../dist/Gateways/YunpianGateway');
 
 class TestUnit extends BaseTestUnit {
 

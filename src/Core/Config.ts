@@ -1,14 +1,19 @@
 'use strict';
 
-import { EasySmsConfig } from "../Types/global";
 import { merge } from "./Support/Utils";
 
 /**
  * 配置对象
  */
-export default class Config
+export class Config
 {
-  protected config: EasySmsConfig = {};
+  protected config: EasySmsConfig = {
+    default: {
+      gateways: [],
+      strategy: 'order',
+    },
+    gateways: {},
+  };
 
   constructor(config: EasySmsConfig = null)
   {

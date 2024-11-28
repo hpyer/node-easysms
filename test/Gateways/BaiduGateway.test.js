@@ -1,6 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const { PhoneNumber, Message } = require('../../dist');
-const { default: BaiduGateway } = require('../../dist/Gateways/BaiduGateway');
+const { BaiduGateway } = require('../../dist/Gateways/BaiduGateway');
 
 class TestUnit extends BaseTestUnit {
 

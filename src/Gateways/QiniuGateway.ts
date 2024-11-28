@@ -1,18 +1,17 @@
 'use strict';
 
 import URL from "url";
-import GatewayErrorException from "../Core/Exceptions/GatewayErrorException";
-import Gateway from "../Core/Gateway";
-import Message from "../Core/Message";
-import PhoneNumber from "../Core/PhoneNumber";
+import { GatewayErrorException } from "../Core/Exceptions/GatewayErrorException";
+import { Gateway } from "../Core/Gateway";
+import { Message } from "../Core/Message";
+import { PhoneNumber } from "../Core/PhoneNumber";
 import { createHmac } from "../Core/Support/Utils";
-import { QiniuGatewayConfig } from "../Types/global";
 
 /**
  * 七牛云短信服务
  * @see https://developer.qiniu.com/sms/5897/sms-api-send-message
  */
-export default class QiniuGateway extends Gateway<QiniuGatewayConfig> {
+export class QiniuGateway extends Gateway<QiniuGatewayConfig> {
 
   public static ENDPOINT_URL: string = 'https://sms.qiniuapi.com/v1/message/single';
 

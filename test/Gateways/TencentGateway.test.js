@@ -1,6 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const { PhoneNumber, Message } = require('../../dist');
-const { default: TencentGateway } = require('../../dist/Gateways/TencentGateway');
+const { TencentGateway } = require('../../dist/Gateways/TencentGateway');
 
 class TestUnit extends BaseTestUnit {
 

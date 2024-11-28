@@ -4,7 +4,7 @@ import { AxiosInstance, AxiosRequestConfig, AxiosResponse, Method } from "axios"
 import FormData from 'form-data';
 import { buildXml, parseXml } from "../Support/Utils";
 
-export default class HttpClientMixin {
+export class HttpClientMixin {
 
   /**
    * 请求客户端实例

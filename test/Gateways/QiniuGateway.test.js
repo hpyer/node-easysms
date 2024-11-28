@@ -1,6 +1,6 @@
 const BaseTestUnit = require('../BaseTestUnit');
 const { PhoneNumber, Message } = require('../../dist');
-const { default: QiniuGateway } = require('../../dist/Gateways/QiniuGateway');
+const { QiniuGateway } = require('../../dist/Gateways/QiniuGateway');
 
 class TestUnit extends BaseTestUnit {
 

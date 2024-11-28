@@ -1,17 +1,16 @@
 'use strict';
 
-import GatewayErrorException from "../Core/Exceptions/GatewayErrorException";
-import Gateway from "../Core/Gateway";
-import Message from "../Core/Message";
-import PhoneNumber from "../Core/PhoneNumber";
+import { GatewayErrorException } from "../Core/Exceptions/GatewayErrorException";
+import { Gateway } from "../Core/Gateway";
+import { Message } from "../Core/Message";
+import { PhoneNumber } from "../Core/PhoneNumber";
 import { createHmac, timestampUTC, trim } from "../Core/Support/Utils";
-import { BaiduGatewayConfig } from "../Types/global";
 
 /**
  * 百度云短信服务
  * @see https://cloud.baidu.com/doc/SMS/s/lkijy5wvf
  */
-export default class BaiduGateway extends Gateway<BaiduGatewayConfig> {
+export class BaiduGateway extends Gateway<BaiduGatewayConfig> {
 
   public static ENDPOINT_HOST: string = 'smsv3.bj.baidubce.com';
   public static ENDPOINT_METHOD: string = '/api/v3/sendSms';

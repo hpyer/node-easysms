@@ -1,15 +1,15 @@
 'use strict';
 
-import { MessengerException, MessengerResult } from "../../Types/global";
-import Exception from "./Exception";
+export class NoGatewayAvailableException implements Exception {
 
-export default class NoGatewayAvailableException extends Exception {
-
+  name: string;
+  message: string;
+  stack?: string;
   protected results: MessengerResult[] = [];
   protected exceptions: MessengerException = {};
 
   constructor(results: MessengerResult[]) {
-    super('All the gateways have failed. You can get error details by `exception.getExceptions()`');
+    this.message = 'All the gateways have failed. You can get error details by `exception.getExceptions()`';
 
     this.results = results;
     this.exceptions = {};
