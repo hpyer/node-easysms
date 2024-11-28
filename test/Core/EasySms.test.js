@@ -5,6 +5,20 @@ class TestUnit extends BaseTestUnit {
 
   test() {
 
+    it('Should send sms by default config correctly.', async () => {
+      let app = new EasySms();
+
+      let result = await app.send('13812341234', 'Test content');
+
+      this.assert.deepStrictEqual(result, [{
+        gateway: 'test',
+        status: 'success',
+        result: {
+          status: 'service-ok',
+        },
+      }]);
+    });
+
     it('Should get gateway instance correctly.', async () => {
       let app = new EasySms({
         gateways: {

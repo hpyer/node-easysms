@@ -263,6 +263,17 @@ easySms.send(order.mobile, message);
 
 ### 各平台配置
 
+#### test
+
+**测试网关** 不做配置时的默认网关。不发送任何短信，仅返回状态值：`{"status":"service-ok"}`
+
+```js
+// 配置项
+{
+  log: true,  // 是否打印日志，默认：false
+}
+```
+
 #### aliyun
 
 **阿里云** [文档](https://help.aliyun.com/document_detail/419273.html)，消息内容使用 `template` + `data`

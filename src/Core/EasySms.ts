@@ -9,6 +9,7 @@ import { Message } from "./Message";
 import { Messenger } from "./Messenger";
 import { PhoneNumber } from "./PhoneNumber";
 import { isGatewayConstructable } from "./Support/Utils";
+import { TestGateway } from "../Gateways/TestGateway";
 import { AliyunGateway } from "../Gateways/AliyunGateway";
 import { TencentGateway } from "../Gateways/TencentGateway";
 import { BaiduGateway } from "../Gateways/BaiduGateway";
@@ -25,6 +26,7 @@ export class EasySms {
   protected customCreators: CustomGatewayCreators = {};
   protected createdGateways: CreatedGateways = {};
   protected supportGateways: SupportGateways = {
+    test: TestGateway,
     aliyun: AliyunGateway,
     tencent: TencentGateway,
     baidu: BaiduGateway,
@@ -169,7 +171,14 @@ export class EasySms {
   protected createGateway(name: string) {
     let config: GatewayConfig = this.config.get(`gateways.${name}`);
     if (!config) {
-      throw new Error('Invalid gateway: ' + name);
+      if (name === 'test') {
+        config = {
+          gateway: 'test',
+        };
+      }
+      else {
+        throw new Error('Invalid gateway: ' + name);
+      }
     }
 
     if (typeof config.gateway == 'undefined') {
@@ -231,7 +240,7 @@ export class EasySms {
     let results: string[] = [];
     let globalSettings: GatewayConfigMap = this.config.get('gateways', {});
     for (let gateway of formatted) {
-      if (typeof globalSettings[gateway] === 'undefined') continue;
+      if (gateway !== 'test' && typeof globalSettings[gateway] === 'undefined') continue;
       results.push(gateway);
     }
 

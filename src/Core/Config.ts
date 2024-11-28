@@ -9,7 +9,7 @@ export class Config
 {
   protected config: EasySmsConfig = {
     default: {
-      gateways: [],
+      gateways: ['test'],
       strategy: 'order',
     },
     gateways: {},
@@ -18,7 +18,13 @@ export class Config
   constructor(config: EasySmsConfig = null)
   {
     if (config) {
-      this.config = config;
+      this.config = {
+        default: {
+          gateways: config.default && config.default.gateways ? config.default.gateways : ['test'],
+          strategy: config.default && config.default.strategy ? config.default.strategy : 'order',
+        },
+        gateways: merge({}, config.gateways),
+      };
     }
   }
 

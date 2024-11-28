@@ -25,22 +25,32 @@ declare interface GatewayConfig extends Recordable {
 }
 
 /**
+ * 测试网关配置项
+ */
+declare interface TestGatewayConfig extends GatewayConfig {
+  /**
+   * 是否打印日志，默认：false
+   */
+  log: boolean;
+}
+
+/**
  * 阿里云配置项
  */
 declare interface AliyunGatewayConfig extends GatewayConfig {
   /**
    * AccessKey ID，必填
    */
-  access_key_id: string,
+  access_key_id: string;
   /**
    * AccessKey Secret，必填
    */
-  access_key_secret: string,
+  access_key_secret: string;
   /**
    * 地域ID，默认：cn-hangzhou
    * @see https://help.aliyun.com/document_detail/419270.html
    */
-  region?: string,
+  region?: string;
 }
 
 /**
@@ -50,20 +60,20 @@ declare interface TencentGatewayConfig extends GatewayConfig {
   /**
    * 短信 SdkAppId，必填
    */
-  sdk_app_id: string,
+  sdk_app_id: string;
   /**
    * SecretId，必填
    */
-  secret_id: string,
+  secret_id: string;
   /**
    * SecretKey，必填
    */
-  secret_key: string,
+  secret_key: string;
   /**
    * 地域ID，默认：ap-guangzhou
    * @see https://cloud.tencent.com/document/api/382/52071#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8
    */
-  region?: string,
+  region?: string;
 }
 
 /**
@@ -73,20 +83,20 @@ declare interface BaiduGatewayConfig extends GatewayConfig {
   /**
    * Access Key Id，必填
    */
-  ak: string,
+  ak: string;
   /**
    * Secret Access Key，必填
    */
-  sk: string,
+  sk: string;
   /**
    * 短信签名ID，必填
    */
-  sign_name: string,
+  sign_name: string;
   /**
    * 服务域名，默认：smsv3.bj.baidubce.com
    * @see https://cloud.baidu.com/doc/SMS/s/pjwvxrw6w
    */
-  domain?: string,
+  domain?: string;
 }
 
 /**
@@ -96,15 +106,15 @@ declare interface QiniuGatewayConfig extends GatewayConfig {
   /**
    * Access Key，必填
    */
-  access_key: string,
+  access_key: string;
   /**
    * Secret Access，必填
    */
-  secret_key: string,
+  secret_key: string;
   /**
    * 短信签名ID，选填
    */
-  sign_name?: string,
+  sign_name?: string;
 }
 
 /**
@@ -114,11 +124,11 @@ declare interface YunpianGatewayConfig extends GatewayConfig {
   /**
    * 用户唯一标识，必填
    */
-  api_key: string,
+  api_key: string;
   /**
    * 服务器地址，默认：sms.yunpian.com
    */
-  domain: string,
+  domain: string;
 }
 
 /**
@@ -128,7 +138,7 @@ declare interface JuheGatewayConfig extends GatewayConfig {
   /**
    * 用户密钥，必填
    */
-  app_key: string,
+  app_key: string;
 }
 
 /**
@@ -140,30 +150,30 @@ declare interface GatewayConfigMap {
   /**
    * 阿里云配置项
    */
-  aliyun?: AliyunGatewayConfig,
+  aliyun?: AliyunGatewayConfig;
 
   /**
    * 腾讯云配置项
    */
-  tencent?: TencentGatewayConfig,
+  tencent?: TencentGatewayConfig;
 
   /**
    * 百度云配置项
    */
-  baidu?: BaiduGatewayConfig,
+  baidu?: BaiduGatewayConfig;
 
   /**
    * 七牛云配置项
    */
-  qiniu?: QiniuGatewayConfig,
+  qiniu?: QiniuGatewayConfig;
 
   /**
    * 云片配置项
    */
-  yunpian?: YunpianGatewayConfig,
+  yunpian?: YunpianGatewayConfig;
 
   /**
    * 聚合数据配置项
    */
-  juhe?: JuheGatewayConfig,
+  juhe?: JuheGatewayConfig;
 }
