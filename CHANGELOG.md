@@ -1,6 +1,13 @@
 # CHANGELOG
 
 
+## v1.2.0 (2024-11-29)
+
+- Feat: 新增测试网关，方便开发者在开放环境下使用
+- Feat: 优化ts代码，提升编辑器的代码提示效果
+
+- Fix: 升级依赖包
+
 ## v1.1.2 (2023-07-01)
 
 - Fix: 修复类型GatewayConfigMap类型中可能为undefined
