@@ -35,17 +35,17 @@ export const randomString = function (len: number = 16): string {
 export const timestamp = function (format: string = null, date: Date = null): string {
   if (!date || !(date instanceof Date)) date = new Date;
   let str = format || 'u';
-  str = str.replace(/yyyy|YYYY/, pad(date.getFullYear(), 4));
+  str = str.replace(/yyyy|YYYY/, pad(date.getFullYear(), 4, '0'));
   str = str.replace(/yy|YY/, (date.getFullYear() % 100) > 8 ? (date.getFullYear() % 100).toString() : '0' + (date.getFullYear() % 100));
   str = str.replace(/MM/, date.getMonth() > 8 ? (date.getMonth() + 1).toString() : ('0' + (date.getMonth() + 1)));
   str = str.replace(/M/g, (date.getMonth() + 1) + '');
-  str = str.replace(/dd|DD/, pad(date.getDate(), 2));
+  str = str.replace(/dd|DD/, pad(date.getDate(), 2, '0'));
   str = str.replace(/d|D/g, date.getDate() + '');
-  str = str.replace(/hh|HH/, pad(date.getHours(), 2));
+  str = str.replace(/hh|HH/, pad(date.getHours(), 2, '0'));
   str = str.replace(/h|H/g, date.getHours() + '');
-  str = str.replace(/mm/, pad(date.getMinutes(), 2));
+  str = str.replace(/mm/, pad(date.getMinutes(), 2, '0'));
   str = str.replace(/m/g, date.getMinutes() + '');
-  str = str.replace(/ss|SS/, pad(date.getSeconds(), 2));
+  str = str.replace(/ss|SS/, pad(date.getSeconds(), 2, '0'));
   str = str.replace(/s|S/g, date.getSeconds() + '');
   str = str.replace(/u/g, parseInt((date.getTime() / 1000).toString()) + '');
   return str;
@@ -60,19 +60,19 @@ export const timestamp = function (format: string = null, date: Date = null): st
 export const timestampUTC = function (format: string = null, date: Date = null): string {
   if (!date || !(date instanceof Date)) date = new Date;
   let str = format || 'u';
-  str = str.replace(/yyyy|YYYY/, pad(date.getUTCFullYear(), 4));
+  str = str.replace(/yyyy|YYYY/, pad(date.getUTCFullYear(), 4, '0'));
   str = str.replace(/yy|YY/, (date.getUTCFullYear() % 100) > 8 ? (date.getUTCFullYear() % 100).toString() : '0' + (date.getUTCFullYear() % 100));
   str = str.replace(/MM/, date.getUTCMonth() > 8 ? (date.getUTCMonth() + 1).toString() : ('0' + (date.getUTCMonth() + 1)));
   str = str.replace(/M/g, (date.getUTCMonth() + 1) + '');
-  str = str.replace(/dd|DD/, pad(date.getUTCDate(), 2));
+  str = str.replace(/dd|DD/, pad(date.getUTCDate(), 2, '0'));
   str = str.replace(/d|D/g, date.getUTCDate() + '');
-  str = str.replace(/hh|HH/, pad(date.getUTCHours(), 2));
+  str = str.replace(/hh|HH/, pad(date.getUTCHours(), 2, '0'));
   str = str.replace(/h|H/g, date.getUTCHours() + '');
-  str = str.replace(/mm/, pad(date.getUTCMinutes(), 2));
+  str = str.replace(/mm/, pad(date.getUTCMinutes(), 2, '0'));
   str = str.replace(/m/g, date.getUTCMinutes() + '');
-  str = str.replace(/ss|SS/, pad(date.getUTCSeconds(), 2));
+  str = str.replace(/ss|SS/, pad(date.getUTCSeconds(), 2, '0'));
   str = str.replace(/s|S/g, date.getUTCSeconds() + '');
-  str = str.replace(/u/g, parseInt((date.getTime() / 1000).toString()) + '');
+  str = str.replace(/u/g, parseInt((Date.parse(new Date().toISOString()) / 1000).toString()) + '');
   return str;
 };
 
