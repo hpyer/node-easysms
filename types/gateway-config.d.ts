@@ -142,6 +142,28 @@ declare interface JuheGatewayConfig extends GatewayConfig {
 }
 
 /**
+ * 极光配置项
+ */
+declare interface UroraGatewayConfig extends GatewayConfig {
+  /**
+   * 应用标识，必填
+   */
+  app_key: string;
+  /**
+   * 应用密钥，必填
+   */
+  app_secret: string;
+  /**
+   * 短信模板ID，选填
+   */
+  template?: string;
+  /**
+   * 短信签名ID，选填
+   */
+  sign_name?: string;
+}
+
+/**
  * 网关配置映射
  */
 declare interface GatewayConfigMap {
@@ -176,4 +198,9 @@ declare interface GatewayConfigMap {
    * 聚合数据配置项
    */
   juhe?: JuheGatewayConfig;
+
+  /**
+   * 极光配置项
+   */
+  urora?: UroraGatewayConfig;
 }

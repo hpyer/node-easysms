@@ -358,3 +358,17 @@ easySms.send(order.mobile, message);
   sign_name: '',
 }
 ```
+
+#### urora
+
+**极光短信** [发送单条模板短信](https://docs.jiguang.cn/jsms/server/rest_api_jsms)，消息内容使用 `template` + `data`
+
+```js
+// 配置项
+{
+  app_key: '',
+  app_secret: '',
+  template: '',
+  sign_name: '',
+}
+```

@@ -16,6 +16,7 @@ import { BaiduGateway } from "../Gateways/BaiduGateway";
 import { QiniuGateway } from "../Gateways/QiniuGateway";
 import { YunpianGateway } from "../Gateways/YunpianGateway";
 import { JuheGateway } from "../Gateways/JuheGateway";
+import { UroraGateway } from "../Gateways/UroraGateway";
 
 /**
  * EasySms
@@ -33,6 +34,7 @@ export class EasySms {
     qiniu: QiniuGateway,
     yunpian: YunpianGateway,
     juhe: JuheGateway,
+    urora: UroraGateway,
   };
   protected messenger: Messenger = null;
   protected httpClient: AxiosInstance;
