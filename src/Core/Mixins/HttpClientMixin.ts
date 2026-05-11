@@ -160,7 +160,8 @@ export class HttpClientMixin {
   }
 
   protected async unwrapResponse(response: AxiosResponse): Promise<any> {
-    let contentType: string = response.headers["Content-Type"] || response.headers["content-type"] || '';
+    let contentTypeHeader = response.headers["Content-Type"] || response.headers["content-type"] || '';
+    let contentType = Array.isArray(contentTypeHeader) ? contentTypeHeader.join(';') : String(contentTypeHeader);
     let content = response.data;
 
     if (contentType) {
