@@ -1,6 +1,10 @@
 # CHANGELOG
 
 
+## v1.3.5 (2026-06-22)
+
+- Fix: update dependencies
+
 ## v1.3.4 (2026-05-11)
 
 - Fix: ts type error
